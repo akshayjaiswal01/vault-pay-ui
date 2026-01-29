@@ -34,15 +34,14 @@ axiosInstance.interceptors.response.use(
   },
   (error) => {
     if (error.response?.status === 401) {
-      // Clear auth data
+      const isLoginRequest = error.config?.url?.includes("/auth/login");
+      if (isLoginRequest) {
+        return Promise.reject(error);
+      }
       if (typeof window !== "undefined") {
         localStorage.removeItem("jwtToken");
         localStorage.removeItem("authUser");
-
-        // Show expiration message
         showErrorToast("Session expired. Please login again.");
-
-        // Redirect to login page after a short delay
         setTimeout(() => {
           window.location.href = "/login";
         }, 1500);

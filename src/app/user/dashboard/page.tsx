@@ -138,10 +138,7 @@ export default function DashboardHome() {
         </div>
 
         <div className="stat place-items-center lg:place-items-start">
-          <Link
-            href="/dashboard/wallet"
-            className="btn btn-primary btn-sm px-6"
-          >
+          <Link href="/user/wallet" className="btn btn-primary btn-sm px-6">
             Account Details
           </Link>
         </div>

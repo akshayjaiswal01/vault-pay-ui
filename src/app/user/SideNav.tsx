@@ -22,14 +22,13 @@ const SideNav = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const { user } = useAuth() as { user: User };
   const handleLogout = async () => {
-    toast.promise(axios.get("/spring-server/api/auth/logout"), {
-      loading: "Logging out...",
-      success: () => {
-        router.push("/");
-        return "Logged out successfully";
-      },
-      error: "Error logging out",
-    });
+    try {
+      localStorage.removeItem("jwtToken");
+      toast.success("Logged out successfully");
+      router.push("/login");
+    } catch (error) {
+      toast.error("Failed to logout. Please try again.");
+    }
   };
   const pathname = usePathname();
   const pathSegments = pathname.split("/").filter(Boolean);
@@ -87,6 +86,7 @@ const SideNav = ({ children }: { children: React.ReactNode }) => {
                 <div className="dropdown dropdown-left cursor-pointer bg-transparent">
                   <img
                     src={
+                      user?.profileImage ||
                       "https://hancockogundiyapartners.com/wp-content/uploads/2019/07/dummy-profile-pic-300x300.jpg"
                     }
                     alt="Avatar"
@@ -111,9 +111,9 @@ const SideNav = ({ children }: { children: React.ReactNode }) => {
                       </span>
                     </div>
                     <hr className="my-2 border-base-content" />
-                    <div className="flex flex-col">
+                    <div className="flex flex-col gap-4">
                       <Link
-                        className="text-left px-4 py-2 text-base-content hover:bg-base-200 transition duration-200 font-semibold"
+                        className="btn btn-neutral btn-outline"
                         href={`/${user.role}/profile`}
                       >
                         My Account
@@ -135,7 +135,10 @@ const SideNav = ({ children }: { children: React.ReactNode }) => {
                 <ThemeToggler />
                 <div className="dropdown dropdown-left cursor-pointer bg-transparent">
                   <img
-                    src={user.profileImage!}
+                    src={
+                      user?.profileImage ||
+                      "https://hancockogundiyapartners.com/wp-content/uploads/2019/07/dummy-profile-pic-300x300.jpg"
+                    }
                     alt="Avatar"
                     className="rounded-full h-12 w-12"
                     tabIndex={0}
@@ -158,9 +161,9 @@ const SideNav = ({ children }: { children: React.ReactNode }) => {
                       </span>
                     </div>
                     <hr className="my-2 border-base-content" />
-                    <div className="flex flex-col">
+                    <div className="flex flex-col gap-4">
                       <Link
-                        className="text-left px-4 py-2 text-base-content hover:bg-base-200 transition duration-200 font-semibold"
+                        className="btn btn-neutral btn-outline"
                         href={`/user/profile`}
                       >
                         My Account

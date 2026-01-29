@@ -124,34 +124,31 @@ export default function TransactionsPage() {
 
       {/* 3. Search & Refinement */}
       <div className="flex flex-col md:flex-row gap-4">
-        <div className="relative grow">
-          <IconSearch
-            className="absolute left-4 top-1/2 -translate-y-1/2 opacity-30"
-            size={18}
-          />
+        <div className="input input-bordered w-full bg-base-100 font-medium">
+          <IconSearch className="opacity-30" size={18} />
           <input
             type="text"
             placeholder="Search by Counterparty or Transaction ID..."
-            className="input input-bordered w-full pl-12 bg-base-100 font-medium"
+            className="grow"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
         <div className="join border border-base-300">
           <button
-            className={`join-item btn btn-sm px-6 ${filter === "all" ? "btn-primary" : "btn-ghost"}`}
+            className={`join-item btn px-6 ${filter === "all" ? "btn-primary" : "btn-ghost"}`}
             onClick={() => setFilter("all")}
           >
             All
           </button>
           <button
-            className={`join-item btn btn-sm px-6 ${filter === "Sent" ? "btn-primary" : "btn-ghost"}`}
+            className={`join-item btn px-6 ${filter === "Sent" ? "btn-primary" : "btn-ghost"}`}
             onClick={() => setFilter("Sent")}
           >
             Sent
           </button>
           <button
-            className={`join-item btn btn-sm px-6 ${filter === "Received" ? "btn-primary" : "btn-ghost"}`}
+            className={`join-item btn px-6 ${filter === "Received" ? "btn-primary" : "btn-ghost"}`}
             onClick={() => setFilter("Received")}
           >
             Received

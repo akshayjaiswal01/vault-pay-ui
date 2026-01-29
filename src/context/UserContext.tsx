@@ -7,6 +7,7 @@ interface UserData {
   fullName: string;
   email: string;
   phoneNumber: string;
+  profileImage?: string;
   role: string;
   isActive: boolean;
   createdAt: string;

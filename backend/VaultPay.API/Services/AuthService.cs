@@ -10,6 +10,8 @@ namespace VaultPay.API.Services
     {
         Task<AuthResponseDto> RegisterAsync(RegisterRequestDto request);
         Task<AuthResponseDto> LoginAsync(LoginRequestDto request);
+        Task<UserProfileDto> CheckEmailAsync(string email);
+        Task ResetPasswordAsync(LoginRequestDto request);
     }
 
     public class AuthService : IAuthService
@@ -49,6 +51,7 @@ namespace VaultPay.API.Services
                 Id = Guid.NewGuid(),
                 FullName = request.FullName,
                 Email = request.Email,
+                ProfileImage = request.ProfileImage == null ? "https://hancockogundiyapartners.com/wp-content/uploads/2019/07/dummy-profile-pic-300x300.jpg" : request.ProfileImage,
                 PhoneNumber = request.PhoneNumber,
                 PasswordHash = passwordHash,
                 Role = "User"
@@ -106,6 +109,34 @@ namespace VaultPay.API.Services
                 Token = token,
                 Role = user.Role
             };
+        }
+        public async Task<UserProfileDto> CheckEmailAsync(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                throw new ArgumentException("Email is required.");
+
+            var user = await _userRepository.GetByEmailAsync(email);
+
+            if (user == null)
+                throw new KeyNotFoundException("User not found.");
+
+            return new UserProfileDto
+            {
+                Id = user.Id,
+                FullName = user.FullName,
+                Email = user.Email,
+                Role = user.Role,
+                ProfileImage = user.ProfileImage,
+                PhoneNumber = user.PhoneNumber
+            };
+        }
+
+        public async Task ResetPasswordAsync(LoginRequestDto request)
+        {
+            var user = await _userRepository.GetByEmailAsync(request.Email);
+            if (user == null)
+                user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password);
+            await _userRepository.UpdateAsync(user);
         }
     }
 }

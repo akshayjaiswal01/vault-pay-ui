@@ -93,7 +93,7 @@ export default function VaultPayLanding() {
       </section>
 
       {/* 3. FEATURES SECTION - GRID INTERACTIVITY */}
-      <section className="py-24 bg-base-200">
+      <section className="py-24 bg-base-200" id="features">
         <div className="container mx-auto px-6">
           <div className="flex flex-col items-center mb-20">
             <h2 className="text-4xl font-black mb-4 tracking-tight">
@@ -144,7 +144,7 @@ export default function VaultPayLanding() {
       </section>
 
       {/* 4. ABOUT SECTION - STATS GRID */}
-      <section className="py-24 container mx-auto px-6 max-w-6xl">
+      <section className="py-24 container mx-auto px-6 max-w-6xl" id="about">
         <div className="flex flex-col lg:flex-row gap-16 items-center">
           <div className="lg:w-1/2">
             <h2 className="text-4xl font-black mb-8 italic">
@@ -190,7 +190,7 @@ export default function VaultPayLanding() {
       </section>
 
       {/* 5. CONTACT - MINIMALIST FORM */}
-      <section className="py-24 bg-neutral text-neutral-content">
+      <section className="py-24 bg-neutral text-neutral-content" id="contact">
         <div className="container mx-auto px-6 max-w-2xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-black mb-4 italic">

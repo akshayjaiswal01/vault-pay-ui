@@ -16,6 +16,7 @@ namespace VaultPay.API.Models.Entities
         [EmailAddress]
         [MaxLength(255)]
         public string Email { get; set; } = string.Empty;
+        public string? ProfileImage { get; set; }
 
         [Required]
         [MaxLength(20)]

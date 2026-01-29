@@ -36,6 +36,7 @@ namespace VaultPay.API.Services
 
             user.FullName = request.FullName;
             user.PhoneNumber = request.PhoneNumber;
+            user.ProfileImage = request.ProfileImage;
 
             user = await _userRepository.UpdateAsync(user);
             return MapToDto(user);
@@ -49,6 +50,7 @@ namespace VaultPay.API.Services
                 FullName = user.FullName,
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
+                ProfileImage = user.ProfileImage,
                 Role = user.Role,
                 IsActive = user.IsActive,
                 CreatedAt = user.CreatedAt

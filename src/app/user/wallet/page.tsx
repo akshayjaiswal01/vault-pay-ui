@@ -123,10 +123,7 @@ export default function WalletPage() {
             Verified Wallet: <span className="font-mono">{wallet?.id}</span>
           </p>
         </div>
-        <Link
-          href="/dashboard/transactions"
-          className="btn btn-ghost btn-sm gap-2"
-        >
+        <Link href="/user/transactions" className="btn btn-ghost btn-sm gap-2">
           <IconHistory size={18} />
           View Audit Trail
         </Link>
