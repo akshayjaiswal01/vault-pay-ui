@@ -28,7 +28,7 @@ export default function RegisterPage() {
     email: "",
     phoneNumber: "",
     password: "",
-    profileImage: "",
+    profileImage: "https://img.freepik.com/premium-photo/happy-man-ai-generated-portrait-user-profile_1119669-1.jpg?w=2000",
     otp: "",
   });
 
@@ -241,7 +241,7 @@ export default function RegisterPage() {
             </div>
 
             {/* Profile Image */}
-            <div className="form-control md:col-span-2">
+            {/* <div className="form-control md:col-span-2">
               <label className="label-text font-bold mb-1 flex items-center gap-2">
                 <IconUpload size={16} /> Profile Picture
               </label>
@@ -268,7 +268,7 @@ export default function RegisterPage() {
                   <IconCircleCheck size={14} /> Image ready for submission
                 </div>
               )}
-            </div>
+            </div> */}
 
             {/* Submit */}
             <div className="md:col-span-2 pt-4">
