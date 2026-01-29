@@ -2,7 +2,7 @@ import axios from "axios";
 import { showErrorToast } from "./toast";
 
 const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL || "https://digital-wallet-uhzz.onrender.com/api";
+  process.env.NEXT_PUBLIC_API_BASE_URL || "https://vault-pay-backend.onrender.com";
 
 const axiosInstance = axios.create({
   baseURL: API_BASE_URL,
